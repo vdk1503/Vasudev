@@ -32,7 +32,7 @@
   body::after{content:"";position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;z-index:-1;
     background:radial-gradient(circle,var(--glow),transparent 70%);filter:blur(40px)}
 
-  /* global faint AI neural-network mesh */
+  /* global faint AI neural-network mesh (static SVG, no JS needed) */
   .bg-net{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.55;
     mask-image:linear-gradient(180deg,transparent,rgba(0,0,0,.5) 25%,rgba(0,0,0,.5) 75%,transparent)}
   .bg-net .edge{stroke:var(--accent-2);stroke-width:1;opacity:.16}
@@ -40,12 +40,11 @@
   .bg-net .node.s{animation:nodePulse 4s ease-in-out infinite}
   .bg-net .node.s:nth-child(2n){animation-delay:1.3s}
   .bg-net .node.s:nth-child(3n){animation-delay:2.4s}
-  @keyframes nodePulse{0%,100%{opacity:.3;r:2}50%{opacity:.65;r:3}}
+  @keyframes nodePulse{0%,100%{opacity:.3}50%{opacity:.7}}
 
   /* offshore platform silhouette in the hero */
   .hero{position:relative}
   .hero > .wrap{position:relative;z-index:3}
-  /* dark pad that dims the AI mesh behind the platform only */
   .hero::after{content:"";position:absolute;right:-4%;bottom:-6%;width:min(64%,820px);height:90%;z-index:1;pointer-events:none;
     background:radial-gradient(ellipse 70% 70% at 70% 75%, var(--bg) 30%, transparent 72%)}
   .hero-art{position:absolute;right:0;bottom:0;width:min(56%,720px);height:auto;z-index:2;pointer-events:none;
@@ -63,12 +62,12 @@
   .well-art .rig-fill{fill:var(--accent);opacity:.05}
   .well-art .ground{stroke:var(--accent);stroke-width:1.4;opacity:.18}
   @media(max-width:820px){.well-art{opacity:.22;width:62%}}
-  @media(prefers-reduced-motion:reduce){.well-art animateTransform{display:none}}
   .hero-art .flame{fill:var(--accent);opacity:.85;transform-origin:center;animation:flick 1.6s ease-in-out infinite}
   .hero-art .flame-glow{fill:var(--accent);opacity:.18;filter:blur(6px);animation:flick 1.6s ease-in-out infinite}
   @keyframes flick{0%,100%{transform:scaleY(1) scaleX(1)}50%{transform:scaleY(1.18) scaleX(.92)}}
   @media(max-width:820px){.hero-art{opacity:.28;width:90%}}
-  @media(prefers-reduced-motion:reduce){.flame,.flame-glow,.node.s{animation:none}}
+  @media(prefers-reduced-motion:reduce){.flame,.flame-glow{animation:none}}
+
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .mono{font-family:var(--mono)}
@@ -82,18 +81,13 @@
   .nav-links{display:flex;gap:22px;font-size:13.5px;font-family:var(--mono)}
   .nav-links a{color:var(--txt-2);transition:color .2s;position:relative}
   .nav-links a:hover{color:var(--accent)}
-  .nav-links a.active{color:var(--accent)}
-  .nav-links a::before{content:"›";color:var(--accent);opacity:0;margin-right:4px;transition:opacity .2s}
-  .nav-links a:hover::before,.nav-links a.active::before{opacity:1}
-  .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
-  .nav-links a.active:not(.nav-cta)::after{transform:scaleX(1)}
   .nav-cta{border:1px solid var(--accent);color:var(--accent);padding:7px 16px;border-radius:8px;font-size:13px;font-family:var(--mono);transition:all .2s}
   .nav-cta:hover{background:var(--accent);color:var(--bg)}
   .burger{display:none;background:none;border:0;color:var(--txt);font-size:24px;cursor:pointer}
 
   .hero{min-height:88vh;display:flex;align-items:center;padding-top:40px}
   .hero-tag{font-family:var(--mono);font-size:13px;color:var(--accent);border:1px solid var(--line);border-radius:30px;padding:6px 14px;display:inline-flex;align-items:center;gap:8px;margin-bottom:28px;background:var(--bg-2)}
-  .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2s infinite}
+  .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
   .hero h1{font-size:clamp(2.5rem,6.5vw,4.6rem);line-height:1.04;font-weight:800;letter-spacing:-2px}
   .hero h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -108,12 +102,11 @@
   .btn-ghost{border-color:var(--line);color:var(--txt)}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:64px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   .stat{background:var(--bg-2);padding:28px 20px;text-align:center}
   .stat .num{font-family:var(--mono);font-size:1.9rem;font-weight:700;color:var(--accent)}
   .stat .lbl{color:var(--txt-3);font-size:12px;margin-top:6px;text-transform:uppercase;letter-spacing:.5px}
   .statband{padding:56px 0 24px}
-  .statband .stats{margin-top:0}
 
   .sec-head{margin-bottom:48px}
   .sec-kicker{font-family:var(--mono);color:var(--accent);font-size:13px;letter-spacing:1px}
@@ -137,9 +130,7 @@
 
   .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
   .proj{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:all .25s;position:relative;overflow:hidden}
-  .proj::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:scaleX(0);transform-origin:left;transition:transform .3s}
   .proj:hover{transform:translateY(-5px);border-color:#2a3a52}
-  .proj:hover::before{transform:scaleX(1)}
   .proj .tag{font-family:var(--mono);font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
   .proj h3{font-size:1.25rem;margin:10px 0;font-weight:700}
   .proj p{color:var(--txt-2);font-size:14.5px;margin-bottom:18px}
@@ -147,11 +138,20 @@
   .proj .metric div .n{font-family:var(--mono);color:var(--accent);font-weight:700;font-size:1.1rem}
   .proj .metric div .t{font-size:11.5px;color:var(--txt-3)}
 
+  .ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .ai-card{background:linear-gradient(160deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:all .25s}
+  .ai-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+  .ai-card .ico{font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:4px 10px;display:inline-block;margin-bottom:14px}
+  .ai-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+  .ai-card p{color:var(--txt-2);font-size:14.5px}
+  .ai-card .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .ai-card .stack span{font-family:var(--mono);font-size:11.5px;color:var(--txt-3);background:var(--bg);border:1px solid var(--line);padding:4px 9px;border-radius:5px}
+
   .timeline{position:relative;padding-left:32px}
   .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
   .tl-item{position:relative;padding-bottom:40px}
   .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{content:"";position:absolute;left:-32px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 0 4px var(--bg)}
+  .tl-item::before{content:"";position:absolute;left:-32px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
   .tl-item .when{font-family:var(--mono);font-size:12.5px;color:var(--accent)}
   .tl-item h3{font-size:1.18rem;margin:6px 0 2px;font-weight:700}
   .tl-item .co{color:var(--txt-2);font-size:14px;font-family:var(--mono)}
@@ -165,25 +165,13 @@
   .edu .inst{color:var(--txt-2);font-size:13.5px;font-family:var(--mono)}
   .edu .note{color:var(--txt-3);font-size:13px;margin-top:8px}
 
-  /* clients trust bar */
   .clients{padding:46px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(15,21,33,.4)}
   .clients .lbl{font-family:var(--mono);color:var(--txt-3);font-size:12px;letter-spacing:1px;text-transform:uppercase;text-align:center;margin-bottom:22px}
   .clients .row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 30px;align-items:center}
-  .clients .co{font-family:var(--mono);font-weight:700;font-size:clamp(14px,2vw,20px);color:var(--txt-2);opacity:.75;letter-spacing:.5px;transition:color .2s,opacity .2s;cursor:default}
-  .clients .co:hover{color:var(--accent);opacity:1}
+  .clients .co{font-family:var(--mono);font-weight:700;font-size:clamp(14px,2vw,20px);color:var(--txt-2);opacity:.75;letter-spacing:.5px}
 
-  /* AI & GenAI spotlight band */
   #ai{background:radial-gradient(ellipse 60% 50% at 82% 0%,rgba(56,189,248,.07),transparent 60%),radial-gradient(ellipse 50% 50% at 8% 100%,rgba(52,211,153,.07),transparent 60%)}
-  .ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-  .ai-card{background:linear-gradient(160deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:all .25s}
-  .ai-card:hover{transform:translateY(-5px);border-color:var(--accent)}
-  .ai-card .ico{font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:4px 10px;display:inline-block;margin-bottom:14px}
-  .ai-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
-  .ai-card p{color:var(--txt-2);font-size:14.5px}
-  .ai-card .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
-  .ai-card .stack span{font-family:var(--mono);font-size:11.5px;color:var(--txt-3);background:var(--bg);border:1px solid var(--line);padding:4px 9px;border-radius:5px}
 
-  /* research / publications */
   .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .res{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center;transition:all .25s}
   .res:hover{border-color:var(--accent);transform:translateY(-4px)}
@@ -193,7 +181,6 @@
   .viewlink{display:inline-flex;align-items:center;gap:6px;margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--accent);border-bottom:1px solid transparent;transition:border .2s}
   .viewlink:hover{border-color:var(--accent)}
 
-  /* honors & awards */
   .honor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
   .honor{display:flex;gap:14px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:20px;align-items:flex-start;transition:all .25s}
   .honor:hover{border-color:var(--accent);transform:translateY(-3px)}
@@ -209,9 +196,6 @@
 
   footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;color:var(--txt-3);font-family:var(--mono);font-size:12.5px}
 
-  /* content always visible — no JS dependency */
-  .reveal{opacity:1;transform:none}
-
   @media(max-width:820px){
     .nav-links{display:none}
     .burger{display:block}
@@ -225,8 +209,62 @@
 </head>
 <body>
 
-<!-- global AI neural-network mesh (generated by JS into this svg) -->
-<svg class="bg-net" id="bgNet" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<!-- global AI neural-network mesh (static, no JS) -->
+<svg class="bg-net" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g>
+    <line class="edge" x1="90" y1="120" x2="300" y2="80"/>
+    <line class="edge" x1="300" y1="80" x2="470" y2="200"/>
+    <line class="edge" x1="470" y1="200" x2="640" y2="120"/>
+    <line class="edge" x1="640" y1="120" x2="820" y2="240"/>
+    <line class="edge" x1="820" y1="240" x2="1010" y2="140"/>
+    <line class="edge" x1="1010" y1="140" x2="1200" y2="260"/>
+    <line class="edge" x1="1200" y1="260" x2="1360" y2="120"/>
+    <line class="edge" x1="90" y1="120" x2="220" y2="320"/>
+    <line class="edge" x1="220" y1="320" x2="470" y2="200"/>
+    <line class="edge" x1="220" y1="320" x2="400" y2="460"/>
+    <line class="edge" x1="400" y1="460" x2="640" y2="380"/>
+    <line class="edge" x1="640" y1="380" x2="470" y2="200"/>
+    <line class="edge" x1="640" y1="380" x2="820" y2="240"/>
+    <line class="edge" x1="640" y1="380" x2="860" y2="500"/>
+    <line class="edge" x1="860" y1="500" x2="1010" y2="140"/>
+    <line class="edge" x1="860" y1="500" x2="1080" y2="420"/>
+    <line class="edge" x1="1080" y1="420" x2="1200" y2="260"/>
+    <line class="edge" x1="1080" y1="420" x2="1300" y2="500"/>
+    <line class="edge" x1="1300" y1="500" x2="1360" y2="120"/>
+    <line class="edge" x1="400" y1="460" x2="300" y2="640"/>
+    <line class="edge" x1="300" y1="640" x2="560" y2="700"/>
+    <line class="edge" x1="560" y1="700" x2="860" y2="500"/>
+    <line class="edge" x1="560" y1="700" x2="760" y2="780"/>
+    <line class="edge" x1="760" y1="780" x2="1080" y2="420"/>
+    <line class="edge" x1="760" y1="780" x2="1020" y2="760"/>
+    <line class="edge" x1="1020" y1="760" x2="1300" y2="500"/>
+    <line class="edge" x1="1020" y1="760" x2="1240" y2="820"/>
+    <line class="edge" x1="120" y1="540" x2="300" y2="640"/>
+    <line class="edge" x1="120" y1="540" x2="220" y2="320"/>
+  </g>
+  <g>
+    <circle class="node s" cx="90" cy="120" r="3"/>
+    <circle class="node s" cx="300" cy="80" r="2.5"/>
+    <circle class="node s" cx="470" cy="200" r="3.2"/>
+    <circle class="node s" cx="640" cy="120" r="2.4"/>
+    <circle class="node s" cx="820" cy="240" r="3"/>
+    <circle class="node s" cx="1010" cy="140" r="2.6"/>
+    <circle class="node s" cx="1200" cy="260" r="3.1"/>
+    <circle class="node s" cx="1360" cy="120" r="2.5"/>
+    <circle class="node s" cx="220" cy="320" r="3"/>
+    <circle class="node s" cx="400" cy="460" r="2.7"/>
+    <circle class="node s" cx="640" cy="380" r="3.3"/>
+    <circle class="node s" cx="860" cy="500" r="2.8"/>
+    <circle class="node s" cx="1080" cy="420" r="3"/>
+    <circle class="node s" cx="1300" cy="500" r="2.6"/>
+    <circle class="node s" cx="120" cy="540" r="2.5"/>
+    <circle class="node s" cx="300" cy="640" r="3"/>
+    <circle class="node s" cx="560" cy="700" r="2.8"/>
+    <circle class="node s" cx="760" cy="780" r="3.1"/>
+    <circle class="node s" cx="1020" cy="760" r="2.7"/>
+    <circle class="node s" cx="1240" cy="820" r="3"/>
+  </g>
+</svg>
 
 <header>
   <div class="wrap">
@@ -249,99 +287,73 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <!-- offshore platform silhouette -->
   <svg class="hero-art" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <!-- sea lines (baseline at bottom edge) -->
     <g class="sea">
       <line x1="0" y1="398" x2="700" y2="398"/>
       <line x1="40" y1="388" x2="660" y2="388"/>
     </g>
-    <!-- jacket legs + bracing (submerged structure) -->
     <g class="rig">
       <polygon class="rig-fill" points="250,250 470,250 500,400 220,400"/>
-      <!-- legs -->
       <line x1="250" y1="250" x2="220" y2="400"/>
       <line x1="330" y1="250" x2="312" y2="400"/>
       <line x1="400" y1="250" x2="412" y2="400"/>
       <line x1="470" y1="250" x2="500" y2="400"/>
-      <!-- X cross-bracing -->
       <line x1="235" y1="320" x2="372" y2="320"/>
       <line x1="356" y1="320" x2="456" y2="320"/>
       <path d="M250,250 L312,320 M330,250 L235,320 M330,250 L412,320 M400,250 L356,320 M400,250 L500,400 M470,250 L412,320"/>
       <line x1="312" y1="320" x2="356" y2="400"/>
       <line x1="412" y1="320" x2="356" y2="400"/>
-      <!-- deck blocks -->
       <rect class="rig-fill" x="240" y="205" width="240" height="46"/>
       <rect x="240" y="205" width="240" height="46"/>
       <rect x="262" y="170" width="80" height="36"/>
       <rect x="360" y="158" width="64" height="48"/>
-      <!-- helideck -->
       <ellipse cx="278" cy="150" rx="40" ry="13"/>
       <line x1="270" y1="146" x2="286" y2="154"/>
       <line x1="286" y1="146" x2="270" y2="154"/>
-      <!-- derrick / drilling tower -->
       <path d="M392,160 L378,70 L446,70 L432,160 M392,160 L432,160 M398,130 L426,130 M404,100 L420,100 M385,118 L439,118 M388,90 L436,90"/>
       <rect x="396" y="56" width="32" height="16"/>
-      <!-- flare boom -->
       <line x1="480" y1="212" x2="610" y2="120"/>
       <line x1="480" y1="226" x2="606" y2="132"/>
       <line x1="498" y1="219" x2="540" y2="190"/>
       <line x1="540" y1="190" x2="580" y2="162"/>
     </g>
-    <!-- gas flare -->
     <g transform="translate(610,118)">
       <ellipse class="flame-glow" cx="0" cy="-14" rx="16" ry="26"/>
       <path class="flame" d="M0,4 C-12,-8 -8,-26 0,-40 C6,-28 4,-20 8,-26 C12,-14 10,-4 0,4 Z"/>
     </g>
   </svg>
 
-  <!-- onshore sucker-rod pump (SRP / pumpjack) -->
   <svg class="well-art" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <!-- ground (baseline at bottom edge) -->
     <g class="ground">
       <line x1="0" y1="298" x2="460" y2="298"/>
       <line x1="30" y1="288" x2="420" y2="288"/>
     </g>
     <g class="rig">
-      <!-- base skid + concrete piers -->
       <rect class="rig-fill" x="120" y="286" width="220" height="14"/>
       <rect x="120" y="286" width="220" height="14"/>
-      <!-- Samson post (A-frame) -->
       <path d="M206,286 L232,150 L258,286"/>
       <line x1="214" y1="246" x2="250" y2="246"/>
       <line x1="220" y1="208" x2="244" y2="208"/>
-      <!-- gearbox / prime mover -->
       <rect class="rig-fill" x="292" y="248" width="58" height="40"/>
       <rect x="292" y="248" width="58" height="40"/>
-      <!-- static pitman arm (crank-pin to beam tail) -->
       <line x1="321" y1="268" x2="356" y2="150"/>
-
-      <!-- rotating crank + counterweight -->
       <g>
         <line x1="321" y1="268" x2="321" y2="222" stroke-width="3"/>
         <circle class="rig-fill" cx="321" cy="222" r="15"/>
         <circle cx="321" cy="222" r="15"/>
         <circle cx="321" cy="268" r="3"/>
-        <animateTransform attributeName="transform" type="rotate"
-          values="0 321 268; 360 321 268" dur="3.4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0 321 268; 360 321 268" dur="3.4s" repeatCount="indefinite"/>
       </g>
-
-      <!-- walking beam + horse head (nodding) -->
       <g>
-        <!-- beam -->
         <polygon class="rig-fill" points="64,150 232,140 356,148 356,160 232,152 64,162"/>
         <line x1="64" y1="156" x2="356" y2="154" stroke-width="9"/>
-        <!-- saddle bearing -->
         <circle cx="232" cy="150" r="6"/>
-        <!-- horse head -->
         <path d="M64,150 C40,150 30,162 30,180 C44,182 56,176 62,166 C66,160 66,154 64,150 Z"/>
-        <!-- bridle / carrier bar + polished rod -->
         <line x1="38" y1="178" x2="38" y2="262"/>
         <line x1="50" y1="176" x2="50" y2="262"/>
         <line x1="33" y1="262" x2="55" y2="262"/>
         <line x1="44" y1="262" x2="44" y2="300"/>
-        <animateTransform attributeName="transform" type="rotate"
-          values="-5 232 150; 5 232 150; -5 232 150" dur="3.4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="-5 232 150; 5 232 150; -5 232 150" dur="3.4s" repeatCount="indefinite"/>
       </g>
     </g>
   </svg>
@@ -374,7 +386,7 @@
 <section class="clients">
   <div class="wrap">
     <div class="lbl">Delivered for / worked with</div>
-    <div class="row reveal">
+    <div class="row">
       <span class="co">Shell</span>
       <span class="co">ONGC</span>
       <span class="co">Reliance</span>
@@ -390,17 +402,17 @@
 <!-- ===== ABOUT ===== -->
 <section id="about">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head">
       <div class="sec-kicker mono">// 01 — about</div>
       <h2 class="sec-title">Where deep process science meets real-time data.</h2>
     </div>
-    <div class="about-grid reveal">
+    <div class="about-grid">
       <div>
         <p>I'm an accomplished Chemical Engineer and R&amp;D specialist with over 20 years in Process Engineering — specializing in Pre-FEED, FEED, and detailed engineering for onshore and offshore projects. My core expertise spans OLGA, LedaFlow, K-Spice, and ASPEN HYSYS dynamic simulation, real-time monitoring, and production optimization.</p>
         <p>Across Falkor (Kongsberg Digital), Shell, ABB, P&amp;G, and Invensys, I've delivered multimillion-dollar impact for upstream assets and FPSOs — from a global enterprise simulation rollout at Shell across 18 sites to real-time production systems for ONGC and Reliance. Lately I've been building GenAI and LLM-powered tools that put decades of process know-how directly into engineers' hands.</p>
         <p>I hold a PhD from IIT Madras and a postdoctoral fellowship from the Max Planck Institute, with 7 publications and 3 patent filings. I'm looking for a senior role where process excellence and AI drive the business — and I'm open to relocate.</p>
       </div>
-      <div class="about-card mono reveal">
+      <div class="about-card mono">
         <div class="row"><span class="k">role</span><span class="v">Principal Process Engineer</span></div>
         <div class="row"><span class="k">based</span><span class="v">Bangalore, India</span></div>
         <div class="row"><span class="k">domain</span><span class="v">Oil &amp; Gas · Upstream / FPSO</span></div>
@@ -413,14 +425,14 @@
   </div>
 </section>
 
-<!-- ===== EXPERTISE / SKILLS ===== -->
+<!-- ===== EXPERTISE ===== -->
 <section id="skills">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head">
       <div class="sec-kicker mono">// 02 — expertise</div>
       <h2 class="sec-title">The toolkit behind the results.</h2>
     </div>
-    <div class="skill-grid reveal">
+    <div class="skill-grid">
       <div class="skill">
         <h4>▸ Dynamic Simulation</h4>
         <ul><li>K-Spice</li><li>LedaFlow</li><li>OLGA</li><li>ASPEN HYSYS</li><li>Aspen Plus</li><li>gPROMS</li><li>Unisim</li><li>DySim</li></ul>
@@ -439,4 +451,327 @@
       </div>
       <div class="skill">
         <h4>▸ Safety &amp; Quality</h4>
-        <ul><li>HAZOP</li><li>ISO 17776</li><li>Process Safety</li><li>Incident response</li><li>BOSIET</li>
+        <ul><li>HAZOP</li><li>ISO 17776</li><li>Process Safety</li><li>Incident response</li><li>BOSIET</li></ul>
+      </div>
+      <div class="skill">
+        <h4>▸ Leadership</h4>
+        <ul><li>Technical Leadership</li><li>Cross-functional teams</li><li>Innovation mgmt</li><li>Training &amp; mentorship</li><li>Agile delivery</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK ===== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 03 — selected work</div>
+      <h2 class="sec-title">Projects with measurable impact.</h2>
+      <p class="sec-sub">A few highlights across two decades of process engineering and simulation — each leading with the outcome.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj">
+        <span class="tag">Simulation Tools · Shell</span>
+        <h3>Global upstream simulation program</h3>
+        <p>Led a multi-year upstream simulation tools program with Flow Assurance, SLB, and Process Engineering — deployed across a global upstream &amp; downstream portfolio for asset optimization on multi-billion-dollar assets.</p>
+        <div class="metric">
+          <div><div class="n">18</div><div class="t">Global sites</div></div>
+          <div><div class="n">-20%</div><div class="t">Commissioning time</div></div>
+          <div><div class="n">+15%</div><div class="t">Plant performance</div></div>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="tag">Real-Time · ONGC / Reliance</span>
+        <h3>Production systems for upstream &amp; FPSOs</h3>
+        <p>Architected real-time production systems for ONGC Ankleshwar/Nandasan and delivered Production System Simulators for Reliance KGD6 R-Cluster, SAT-Cluster, and MJ FPSO.</p>
+        <div class="metric">
+          <div><div class="n">+30%</div><div class="t">Operational KPIs</div></div>
+          <div><div class="n">5</div><div class="t">Deployments / 24 mo</div></div>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="tag">Process Safety · HAZOP</span>
+        <h3>HAZOP for major production assets</h3>
+        <p>Directed comprehensive HAZOP analysis for major oil &amp; gas production assets, ensuring ISO 17776 compliance and faster incident response.</p>
+        <div class="metric">
+          <div><div class="n">-35%</div><div class="t">Incident response time</div></div>
+          <div><div class="n">ISO 17776</div><div class="t">Compliance</div></div>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="tag">Optimization · ABB</span>
+        <h3>RO desalination optimization</h3>
+        <p>Piloted an optimization solution at a large RO desalination plant in Jeddah and validated energy savings across Gujarat and UAE sites.</p>
+        <div class="metric">
+          <div><div class="n">$450K</div><div class="t">Annual benefit (Jeddah)</div></div>
+          <div><div class="n">+2%</div><div class="t">Productivity</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI & GENAI ===== -->
+<section id="ai">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 04 — ai &amp; genai</div>
+      <h2 class="sec-title">Building with AI &amp; GenAI.</h2>
+      <p class="sec-sub">GenAI, LLMs, and Python applied to real problems — from oil &amp; gas simulation and optimization to data-driven tools beyond the domain.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <span class="ico">GenAI Agent</span>
+        <h3>K-Spice Tutor</h3>
+        <p>An AI agent that guides process engineers through K-Spice workflows in real time — embedding expert guidance directly in the simulator and cutting training time by 40%.</p>
+        <div class="stack"><span>GenAI</span><span>LLM</span><span>K-Spice</span><span>Real-time</span></div>
+      </div>
+      <div class="ai-card">
+        <span class="ico">🏆 AI Hackathon 2025</span>
+        <h3>K-Spice Gas-Lift Optimization Tool</h3>
+        <p>Led the winning AI Hackathon 2025 team building a hybrid GenAI/LLM gas-lift optimization tool for mature wells — pairing physics-based K-Spice models with AI to maximize production.</p>
+        <div class="stack"><span>GenAI</span><span>LLM</span><span>Gas-lift</span><span>K-Spice</span></div>
+      </div>
+      <div class="ai-card">
+        <span class="ico">Diagnostics Engine</span>
+        <h3>GenAI SRP Calculation Engine</h3>
+        <p>A standalone sucker-rod-pump calculation engine built with GenAI for diagnostics and calculations, integrated into a real-time simulation &amp; visualization platform with live LedaFlow–K-Spice data exchange.</p>
+        <div class="stack"><span>GenAI</span><span>SRP</span><span>LedaFlow</span><span>Visualization</span></div>
+      </div>
+      <div class="ai-card">
+        <span class="ico">Python · Independent build</span>
+        <h3>Robust India Market Screener</h3>
+        <p>A self-built Python tool that screens Indian equities with robust, data-driven filters and scoring — applying the same modelling and optimization discipline from process engineering to financial markets.</p>
+        <div class="stack"><span>Python</span><span>Data pipelines</span><span>Screening</span><span>Analytics</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 05 — experience</div>
+      <h2 class="sec-title">Career timeline.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="when">Apr 2020 — Present · Bangalore</div>
+        <h3>Principal Process Engineer</h3>
+        <div class="co">Falkor (prev. Kongsberg Digital India) · ONGC, Reliance, Snøhvit Phase 2</div>
+        <ul>
+          <li>Led end-to-end development of front-end, engineering, real-time, and OTS solutions for upstream oil &amp; gas customers.</li>
+          <li>Created the K-Spice Tutor GenAI agent (+40% training efficiency) and an SRP calculation engine integrated into a real-time simulation/visualization platform.</li>
+          <li>Architected real-time production systems for ONGC and Production System Simulators for Reliance KGD6 and MJ FPSO.</li>
+          <li>Led the winning team at AI Hackathon 2025; directed HAZOP (ISO 17776) cutting incident response 35%; ran lifecycle PM for 5 AI deployments, +30% KPIs.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Mar 2015 — Mar 2020 · Bangalore</div>
+        <h3>Process Engineering Specialist</h3>
+        <div class="co">Shell Technology Centre Bangalore · Chemicals &amp; refining sites</div>
+        <ul>
+          <li>Managed a multi-year, multimillion-dollar upstream simulation tools program, deploying enterprise simulation across a global upstream &amp; downstream portfolio to improve production and margin decisions on multi-billion-dollar assets.</li>
+          <li>Led global deployment of the AspenOne Engineering Suite across all Shell chemicals &amp; refining sites; trained 30 engineers in Singapore.</li>
+          <li>Built DCS control-scheme simulations cutting commissioning time 20%; deployed across 18 global sites for +15% plant performance.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Sep 2011 — Mar 2015 · Bangalore</div>
+        <h3>Scientist — Control &amp; Optimization</h3>
+        <div class="co">ABB Global Industries and Services · RO desalination (Jeddah, Gujarat, UAE)</div>
+        <ul>
+          <li>Led design-optimization studies for solar desalination with renewables, identifying $50M annual profit potential.</li>
+          <li>Piloted optimization at Jeddah RO plant (+2% productivity, $450K/yr) and validated energy savings in Gujarat and UAE.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Jan 2010 — Aug 2011 · Bangalore</div>
+        <h3>Scientist / Engineer</h3>
+        <div class="co">Procter &amp; Gamble · Global manufacturing sites</div>
+        <ul>
+          <li>Built a flow-model library and pneumatic-conveying platform across global plants — $100M annual savings potential, +35% assessment accuracy.</li>
+          <li>Drove process design optimization across 12+ sites (ASPEN HYSYS, IDEAS): −22% cost, +28% throughput, +19% reliability KPIs.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Feb 2009 — Jan 2010 · Hyderabad</div>
+        <h3>Process Simulation Engineer-II</h3>
+        <div class="co">Invensys India Development Center · ExxonMobil</div>
+        <ul>
+          <li>Developed valve-flashing calculations for DySim (+95% result accuracy); resolved 15 technical challenges and shipped 5 feature enhancements.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 06 — education</div>
+      <h2 class="sec-title">Academic foundation.</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu">
+        <div class="yr">2009</div>
+        <h4>Postdoctoral Fellow, Chemical Engineering</h4>
+        <div class="inst">Max Planck Institute (MPI) · Magdeburg, Germany</div>
+        <div class="note">Kinetics of iron oxide for hydrogen purification in fuel-cell applications.</div>
+      </div>
+      <div class="edu">
+        <div class="yr">2009</div>
+        <h4>PhD, Chemical Engineering</h4>
+        <div class="inst">IIT Madras · Chennai</div>
+        <div class="note">Modelling &amp; nonlinear analysis of reactor-separator systems · 9.35/10 CGPA · 7 publications.</div>
+      </div>
+      <div class="edu">
+        <div class="yr">2002</div>
+        <h4>M.Tech, Chemical Engineering</h4>
+        <div class="inst">Regional Engineering College · Warangal</div>
+        <div class="note">Computer-Aided Process Equipment Design · 1st in batch (78.4%).</div>
+      </div>
+      <div class="edu">
+        <div class="yr">2000</div>
+        <h4>B.Tech, Chemical Engineering</h4>
+        <div class="inst">Acharya Nagarjuna University · Guntur</div>
+        <div class="note">2nd in the university (80.01%).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESEARCH ===== -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 07 — research</div>
+      <h2 class="sec-title">Publications &amp; patents.</h2>
+      <p class="sec-sub">A research foundation behind the engineering — peer-reviewed work and filed inventions.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res">
+        <div class="big">7+</div>
+        <h4>Publications &amp; conference papers</h4>
+        <p>Peer-reviewed journal articles and international conference papers spanning process modelling, nonlinear analysis, and optimization.</p>
+      </div>
+      <div class="res">
+        <div class="big">3</div>
+        <h4>Patent filings</h4>
+        <p>Inventions in renewable-energy integration and model-based optimization for irrigation canal operations.</p>
+      </div>
+      <div class="res">
+        <div class="big">PhD</div>
+        <h4>+ Postdoctoral research</h4>
+        <p>PhD, IIT Madras (9.35/10 CGPA) and a postdoctoral fellowship at the Max Planck Institute on hydrogen-purification kinetics for fuel cells.</p>
+      </div>
+    </div>
+    <div>
+      <a class="viewlink" href="https://www.linkedin.com/in/vasudevm/details/publications/" target="_blank" rel="noopener">View all publications on LinkedIn →</a>
+      <a class="viewlink" href="https://www.linkedin.com/in/vasudevm/details/patents/" target="_blank" rel="noopener" style="margin-left:24px">View patents on LinkedIn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HONORS ===== -->
+<section id="honors">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 08 — honors &amp; awards</div>
+      <h2 class="sec-title">Recognition.</h2>
+    </div>
+    <div class="honor-grid">
+      <div class="honor">
+        <span class="mark">🏆</span>
+        <div><h4>AI Hackathon 2025 — Winner</h4><p>Led the winning team building a GenAI/LLM hybrid gas-lift optimization solution for mature wells.</p></div>
+      </div>
+      <div class="honor">
+        <span class="mark">🔬</span>
+        <div><h4>Postdoctoral Fellowship</h4><p>Max Planck Institute for Dynamics of Complex Technical Systems, Magdeburg, Germany.</p></div>
+      </div>
+      <div class="honor">
+        <span class="mark">🎓</span>
+        <div><h4>PhD — 9.35/10 CGPA</h4><p>Indian Institute of Technology (IIT) Madras, Chemical Engineering.</p></div>
+      </div>
+      <div class="honor">
+        <span class="mark">🥇</span>
+        <div><h4>1st in batch — M.Tech</h4><p>Regional Engineering College, Warangal (78.4% aggregate).</p></div>
+      </div>
+      <div class="honor">
+        <span class="mark">🥈</span>
+        <div><h4>2nd in university — B.Tech</h4><p>Acharya Nagarjuna University, Guntur (80.01% aggregate).</p></div>
+      </div>
+      <div class="honor">
+        <span class="mark">🛡️</span>
+        <div><h4>BOSIET certified</h4><p>Basic Offshore Safety Induction &amp; Emergency Training with Emergency Breathing System.</p></div>
+      </div>
+    </div>
+    <div>
+      <a class="viewlink" href="https://www.linkedin.com/in/vasudevm/details/honors/" target="_blank" rel="noopener">View all honors on LinkedIn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker mono">// 09 — contact</div>
+      <h2 class="sec-title">Let's talk.</h2>
+      <p class="sec-sub">Hiring for a Principal / Lead / Manager role in process engineering, simulation, or AI? I'm open to relocate and reply within a day.</p>
+    </div>
+    <div class="contact-actions">
+      <a href="mailto:vasu1503@gmail.com" class="btn btn-primary">✉ vasu1503@gmail.com</a>
+      <a href="Vasudeva-Kumar-Mantravadi-CV-2026.pdf" class="btn btn-ghost" download="Vasudeva-Kumar-Mantravadi-CV.pdf">↓ Download résumé</a>
+    </div>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/vasudevm/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="mailto:vasu1503@gmail.com">Email ↗</a>
+      <a href="tel:+919902223905">+91 99022 23905 ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Vasudeva Kumar Mantravadi · Principal Process Engineer · Bangalore, India</div>
+</footer>
+
+<script>
+  // Optional enhancements. The site is fully readable without JS;
+  // these just add the mobile menu and the typing tagline animation.
+  try {
+    var burger = document.getElementById('burger');
+    var navLinks = document.getElementById('navLinks');
+    if (burger && navLinks) {
+      burger.addEventListener('click', function(){ navLinks.classList.toggle('open'); });
+      navLinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ navLinks.classList.remove('open'); }); });
+    }
+  } catch (e) {}
+
+  try {
+    var phrases = [
+      'Pre-FEED · FEED · Detailed Engineering',
+      'OLGA · LedaFlow · K-Spice · ASPEN HYSYS',
+      'Dynamic Simulation · Real-Time Monitoring',
+      'GenAI & LLMs for Process Engineering'
+    ];
+    var typed = document.getElementById('typed');
+    if (typed) {
+      var pi = 0, ci = 0, deleting = false;
+      var tick = function(){
+        var p = phrases[pi];
+        typed.textContent = p.slice(0, ci);
+        if (!deleting && ci < p.length) { ci++; }
+        else if (deleting && ci > 0) { ci--; }
+        else if (!deleting && ci === p.length) { deleting = true; setTimeout(tick, 1600); return; }
+        else { deleting = false; pi = (pi + 1) % phrases.length; }
+        setTimeout(tick, deleting ? 35 : 60);
+      };
+      tick();
+    }
+  } catch (e) {}
+</script>
+</body>
+</html>
