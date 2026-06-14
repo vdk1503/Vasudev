@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script>document.documentElement.classList.add('js');</script>
 <title>Vasudeva Kumar Mantravadi — Principal Process Engineer</title>
 <meta name="description" content="Principal Process Engineer & PhD Chemical Engineer with 20+ years in dynamic simulation, real-time production optimization, and GenAI for oil & gas. Open to relocate." />
 <meta name="author" content="Vasudeva Kumar Mantravadi" />
@@ -50,20 +49,20 @@
   .hero::after{content:"";position:absolute;right:-4%;bottom:-6%;width:min(64%,820px);height:90%;z-index:1;pointer-events:none;
     background:radial-gradient(ellipse 70% 70% at 70% 75%, var(--bg) 30%, transparent 72%)}
   .hero-art{position:absolute;right:0;bottom:0;width:min(56%,720px);height:auto;z-index:2;pointer-events:none;
-    opacity:.9;mask-image:linear-gradient(180deg,transparent,#000 48%)}
-  .hero-art .rig{stroke:var(--accent-2);stroke-width:2.4;fill:none;opacity:.9;stroke-linecap:round;stroke-linejoin:round}
-  .hero-art .rig-fill{fill:var(--accent-2);opacity:.1}
-  .hero-art .sea{stroke:var(--accent-2);stroke-width:1.6;opacity:.3}
+    opacity:.5;mask-image:linear-gradient(180deg,transparent,#000 48%)}
+  .hero-art .rig{stroke:var(--accent-2);stroke-width:2;fill:none;opacity:.5;stroke-linecap:round;stroke-linejoin:round}
+  .hero-art .rig-fill{fill:var(--accent-2);opacity:.05}
+  .hero-art .sea{stroke:var(--accent-2);stroke-width:1.4;opacity:.18}
 
   /* onshore SRP (sucker-rod pump) silhouette, lower-left */
   .hero::before{content:"";position:absolute;left:-5%;bottom:-6%;width:min(46%,560px);height:78%;z-index:1;pointer-events:none;
     background:radial-gradient(ellipse 68% 68% at 32% 82%, var(--bg) 26%, transparent 72%)}
   .well-art{position:absolute;left:0;bottom:0;width:min(36%,400px);height:auto;z-index:2;pointer-events:none;
-    opacity:.8;mask-image:linear-gradient(180deg,transparent,#000 52%)}
-  .well-art .rig{stroke:var(--accent);stroke-width:2.4;fill:none;opacity:.85;stroke-linecap:round;stroke-linejoin:round}
-  .well-art .rig-fill{fill:var(--accent);opacity:.08}
-  .well-art .ground{stroke:var(--accent);stroke-width:1.6;opacity:.28}
-  @media(max-width:820px){.well-art{opacity:.3;width:62%}}
+    opacity:.45;mask-image:linear-gradient(180deg,transparent,#000 52%)}
+  .well-art .rig{stroke:var(--accent);stroke-width:2;fill:none;opacity:.5;stroke-linecap:round;stroke-linejoin:round}
+  .well-art .rig-fill{fill:var(--accent);opacity:.05}
+  .well-art .ground{stroke:var(--accent);stroke-width:1.4;opacity:.18}
+  @media(max-width:820px){.well-art{opacity:.22;width:62%}}
   @media(prefers-reduced-motion:reduce){.well-art animateTransform{display:none}}
   .hero-art .flame{fill:var(--accent);opacity:.85;transform-origin:center;animation:flick 1.6s ease-in-out infinite}
   .hero-art .flame-glow{fill:var(--accent);opacity:.18;filter:blur(6px);animation:flick 1.6s ease-in-out infinite}
@@ -210,10 +209,8 @@
 
   footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;color:var(--txt-3);font-family:var(--mono);font-size:12.5px}
 
-  /* content is visible by default; only hidden (for the fade-in) when JS is active */
-  .reveal{transition:opacity .6s ease,transform .6s ease}
-  .js .reveal{opacity:0;transform:translateY(24px)}
-  .reveal.in{opacity:1;transform:none}
+  /* content always visible — no JS dependency */
+  .reveal{opacity:1;transform:none}
 
   @media(max-width:820px){
     .nav-links{display:none}
@@ -438,4 +435,8 @@
       </div>
       <div class="skill">
         <h4>▸ Production &amp; Optimization</h4>
-        <ul><li>Real-Time Monitoring</li><li>Production Optimization</li><li>Gas-lift optimization</li><li>Asset Integrity</li><li>Energ
+        <ul><li>Real-Time Monitoring</li><li>Production Optimization</li><li>Gas-lift optimization</li><li>Asset Integrity</li><li>Energy Efficiency</li></ul>
+      </div>
+      <div class="skill">
+        <h4>▸ Safety &amp; Quality</h4>
+        <ul><li>HAZOP</li><li>ISO 17776</li><li>Process Safety</li><li>Incident response</li><li>BOSIET</li>
