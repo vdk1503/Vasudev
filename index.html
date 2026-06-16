@@ -81,6 +81,9 @@
   .nav-links{display:flex;gap:22px;font-size:13.5px;font-family:var(--mono)}
   .nav-links a{color:var(--txt-2);transition:color .2s;position:relative}
   .nav-links a:hover{color:var(--accent)}
+  .nav-links a.active{color:var(--accent)}
+  .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+  .nav-links a.active:not(.nav-cta)::after{transform:scaleX(1)}
   .nav-cta{border:1px solid var(--accent);color:var(--accent);padding:7px 16px;border-radius:8px;font-size:13px;font-family:var(--mono);transition:all .2s}
   .nav-cta:hover{background:var(--accent);color:var(--bg)}
   .burger{display:none;background:none;border:0;color:var(--txt);font-size:24px;cursor:pointer}
@@ -771,6 +774,24 @@
       };
       tick();
     }
+  } catch (e) {}
+
+  try {
+    var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+    var spyMap = spyLinks.map(function(a){ return { a: a, sec: document.querySelector(a.getAttribute('href')) }; })
+                         .filter(function(o){ return o.sec; });
+    var headerH = 64;
+    var spy = function(){
+      var pos = window.scrollY + headerH + 1;
+      var current = null;
+      spyMap.forEach(function(o){ if (o.sec.offsetTop <= pos) current = o; });
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) current = spyMap[spyMap.length - 1];
+      spyLinks.forEach(function(a){ a.classList.remove('active'); });
+      if (current) current.a.classList.add('active');
+    };
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
   } catch (e) {}
 </script>
 </body>
