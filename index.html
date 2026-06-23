@@ -140,6 +140,8 @@
   .proj .metric{display:flex;gap:24px;border-top:1px solid var(--line);padding-top:16px;flex-wrap:wrap}
   .proj .metric div .n{font-family:var(--mono);color:var(--accent);font-weight:700;font-size:1.1rem}
   .proj .metric div .t{font-size:11.5px;color:var(--txt-3)}
+  .proj.feature{grid-column:1/-1;border-color:var(--accent);background:linear-gradient(160deg,rgba(52,211,153,.06),var(--bg-2))}
+  .proj.feature .tag{color:var(--accent-2)}
 
   .ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
   .ai-card{background:linear-gradient(160deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:all .25s}
@@ -473,6 +475,16 @@
       <p class="sec-sub">A few highlights across two decades of process engineering and simulation — each leading with the outcome.</p>
     </div>
     <div class="proj-grid">
+      <div class="proj feature">
+        <span class="tag">FEED / EPC Studies · Equinor Snøhvit</span>
+        <h3>Design verification — Snøhvit Future Phase 2</h3>
+        <p>Conducted FEED/EPC studies to verify design against developed dynamic simulators — providing critical input to modify and upgrade the design for new compressor installations on the Snøhvit Future Phase 2 project.</p>
+        <div class="metric">
+          <div><div class="n">FEED / EPC</div><div class="t">Design verification</div></div>
+          <div><div class="n">Compressors</div><div class="t">New installations</div></div>
+          <div><div class="n">Snøhvit</div><div class="t">Future Phase 2</div></div>
+        </div>
+      </div>
       <div class="proj">
         <span class="tag">Simulation Tools · Shell</span>
         <h3>Global upstream simulation program</h3>
@@ -567,6 +579,7 @@
           <li>Led end-to-end development of front-end, engineering, real-time, and OTS solutions for upstream oil &amp; gas customers.</li>
           <li>Created the K-Spice Tutor GenAI agent (+40% training efficiency) and an SRP calculation engine integrated into a real-time simulation/visualization platform.</li>
           <li>Architected real-time production systems for ONGC and Production System Simulators for Reliance KGD6 and MJ FPSO.</li>
+          <li>Conducted FEED/EPC studies verifying design against developed simulators — providing critical input to modify/upgrade design for new compressor installations on the Snøhvit Future Phase 2 project.</li>
           <li>Led the winning team at AI Hackathon 2025; directed HAZOP (ISO 17776) cutting incident response 35%; ran lifecycle PM for 5 AI deployments, +30% KPIs.</li>
         </ul>
       </div>
